@@ -3,6 +3,7 @@ package com.example.Account.controller;
 import com.example.Account.domain.Account;
 import com.example.Account.dto.AccountDto;
 import com.example.Account.dto.CreateAccount;
+import com.example.Account.dto.DeleteAccount;
 import com.example.Account.service.AccountService;
 import com.example.Account.service.RedisTestService;
 import jakarta.validation.Valid;
@@ -16,10 +17,6 @@ public class AccountController {
     private final AccountService accountService;
     private final RedisTestService redisTestService;
 
-    /**
-     * 1-1 이렇게 어떻게 사ㅣ작한다 그리고 어디론다 ~
-     *
-     */
     @PostMapping("/account")
     public CreateAccount.Response createAccount(
             @RequestBody @Valid CreateAccount.Request request
@@ -31,6 +28,19 @@ public class AccountController {
                 )
         );
     }
+
+    @DeleteMapping("/account")
+    public DeleteAccount.Response deleteAccount(
+            @RequestBody @Valid DeleteAccount.Request request
+    ) {
+        return DeleteAccount.Response.from(
+                accountService.deleteAccount(
+                        request.getUserId(),
+                        request.getAccountNumber()
+                )
+        );
+    }
+
     @GetMapping("/get-lock")
     public String getLock() {
         return redisTestService.getLock();
