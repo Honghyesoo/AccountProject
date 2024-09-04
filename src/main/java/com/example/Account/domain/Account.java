@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Account {
-    @Id
+    @Id //프라이머리 키
     @GeneratedValue
     Long id;
 
