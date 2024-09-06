@@ -1,5 +1,6 @@
 package com.example.Account.controller;
 
+import com.example.Account.dto.CancelBalance;
 import com.example.Account.dto.CreateAccount;
 import com.example.Account.dto.TransactionDto;
 import com.example.Account.dto.UseBalance;
@@ -62,6 +63,35 @@ class TransactionControllerTest {
                 .andExpect(jsonPath("$.amount").value(12345));
 
      }
+
+    @Test
+    void successsCancelBalance() throws Exception {
+        //given
+        given(transactionService.cancelBalance(anyString() ,anyString(),anyLong()))
+                .willReturn(TransactionDto.builder()
+                        .accountNumber("1000000000")
+                        .transactedAt(LocalDateTime.now())
+                        .amount(54321L)
+                        .transactionId("transactionIdForCancel")
+                        .transactionResultType(S)
+                        .build());
+
+        //when
+        //then
+        mockMvc.perform(post("/account/transaction/cancel")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(
+                                new CancelBalance.Request("transactionId",
+                                        "2000000000",3000L)
+                        )))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.accountNumber").value("1000000000"))
+                .andExpect(jsonPath("$.transactionResult").value("S"))
+                .andExpect(jsonPath("$.transactionId").value("transactionIdForCancel"))
+                .andExpect(jsonPath("$.amount").value(54321));
+
+    }
 
 
 }

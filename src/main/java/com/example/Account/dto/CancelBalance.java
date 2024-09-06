@@ -6,15 +6,14 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-public class UseBalance { // 잔액 사용
+public class CancelBalance { // 잔액 사용 취소
     @Getter
     @Setter
     @AllArgsConstructor
     @NoArgsConstructor
     public static class Request {
-        @NonNull
-        @Min(1)
-        private Long userId;
+        @NotBlank
+        private String transactionId;
 
         @NotBlank
         @Size(min = 10, max = 10)
