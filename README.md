@@ -2,7 +2,7 @@
 
 - 사용자들 마다 잔액을 관리할 수 있는 계좌시스템 구현
 ## 💡 개발 환경
--  spring boot , Java
+<img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat-square&logo=Spring%20Boot&logoColor=black"/><img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"/><img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=flat-square&logo=apachetomcat&logoColor=black"/><img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/><img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=Postman&logoColor=white"/>
 -  DB : H2 (memory DB 모드 활용) ,Embedded redis
 
 ## 💡 각 기능 별 구체적인 명세서 생성
