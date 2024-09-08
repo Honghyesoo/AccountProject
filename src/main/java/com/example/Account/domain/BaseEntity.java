@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
-    @Id
+    @Id //프라이머리 키
     @GeneratedValue
     private Long id;
 
