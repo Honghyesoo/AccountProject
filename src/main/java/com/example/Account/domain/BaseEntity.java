@@ -1,9 +1,9 @@
 package com.example.Account.domain;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -13,10 +13,18 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Entity
-public class AccountUser extends BaseEntity{
-    private String name;
+@AllArgsConstructor
+@Builder(builderMethodName = "doesNotUseThisBuilder")
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
+public class BaseEntity {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @CreatedDate
+    private LocalDateTime createdAt; // 생성 일시
+    @LastModifiedDate
+    private LocalDateTime updatedAt; // 최종 수정 일시
 }

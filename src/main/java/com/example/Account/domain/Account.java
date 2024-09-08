@@ -17,12 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
-@EntityListeners(AuditingEntityListener.class)
-public class Account {
-    @Id //프라이머리 키
-    @GeneratedValue
-    Long id;
-
+public class Account extends BaseEntity{
     @ManyToOne
     private AccountUser accountUser; // 소유자 정보
     private String accountNumber; // 계좌 번호
@@ -33,11 +28,6 @@ public class Account {
 
     private LocalDateTime registeredAt; // 계좌 등록 일시
     private LocalDateTime unRegisteredAt; // 계좌 해지 일시
-
-    @CreatedDate
-    private LocalDateTime createdAt; // 생성 일시
-    @LastModifiedDate
-    private LocalDateTime updatedAt; // 최종 수정 일시
 
     public void useBalance(Long amount){
         if (amount > balance){
